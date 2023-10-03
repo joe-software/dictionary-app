@@ -2,6 +2,8 @@
 
 This app allows a user to search for a word/term and the app provides relevant information. It includes a dark mode and a font selector. 
 
+**Demo: https://joe-software.github.io/chart-component/**
+
 ## Tech used
 
 This app uses React.JS and HTML/CSS. it also uses Styled-Components to manage CSS/styling.
@@ -18,3 +20,9 @@ https://joe-software.github.io/dictionary-app/
 To run the code:
 'npm install'
 'npm start'
+
+## Optimizations
+
+If I had more time to further develop this product I would include a method of authentication and allow users to save words which they might want to reference in the future. Additionally, I would use a dropdown menu for the font selector, to keep the interface cleaner. 
+
+
