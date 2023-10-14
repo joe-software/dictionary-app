@@ -1,11 +1,7 @@
 import styled from 'styled-components'
 import React from 'react';
 
-
-
-
 function Body(props) {
-  console.log(props)
   let dictData = props.dictData
   let defArr = []
    if(props.dictData){

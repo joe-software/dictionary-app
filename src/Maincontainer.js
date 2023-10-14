@@ -3,10 +3,15 @@ import Body from "./Body";
 import React, { useEffect, useState } from 'react';
 
 function MainContainer() {
+    // state used to toggle darkmode on and off
     const[darkToggle, setDarkToggle] = useState(false)
+    // state used to indicate the colours for darkmode/lightmode
     const[colorRange, setColorRange] = useState('')
+    // state used for the search word as the user types
     const[searchTerm, setSearchTerm] = useState('help')
+    // state used as the dictionary data from the API - if empty or errir it reverts to false to prevent an error when it reaches the props in components
     const[dictData, setDictData] = useState(false)
+    // state holds the selected font value which is then passed to props
     const[font, setFont] = useState('Open Sans')
     function toggleState(){
         setDarkToggle(!darkToggle)
@@ -15,6 +20,7 @@ function MainContainer() {
     //function to handle the search input
     function searchInput(e){
         let searchValue = e.target.value
+        // if the API recieves an empty string it throws an error so the below if statement prevents the possibility of an empty string value
         if(searchValue == ''){
             searchValue = "-"
         }
@@ -26,9 +32,7 @@ function MainContainer() {
         setFont(e.target.outerText)
         }
 
-
-    // soft mint green #D1E8E2, deep teal #19747E, light sky blue #A9D6E5, light gray #E2E2E2 - lightmode (default)
-    //below effect changes the colour mapping object based upon the change of dark toggle
+    //below effect changes the colour mapping object dependant upon the change of dark toggle
     useEffect(() => {
         if(darkToggle){
             setColorRange({secondaryBackground: 'grey', background:'#3F2E3E', primaryFont: '#EFE1D1'})
@@ -37,7 +41,7 @@ function MainContainer() {
         }
     }, [darkToggle])
 
-    //inital API load
+    // inital API fetch
     useEffect(() => {
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchTerm}`)
             .then(res => res.json())
@@ -50,6 +54,7 @@ function MainContainer() {
             })
     }, [])
 
+    // API fetch dependant upon the search state changing
     useEffect(() => {
         fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchTerm}`)
         .then(res => res.json())
